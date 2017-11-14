@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+</head>
+<body>
+	<div class="container-content">
+		<br />
+		<div class="row text-center" ng-hide="lstOrdenes.length > 0">
+			<h4>No se encontró resultados de pedidos para el cliente seleccionado.</h3>
+		</div>
+
+		<table class="table table-sm table-hover"
+			ng-show="lstOrdenes.length > 0">
+			<thead class="">
+				<tr>
+					<th scope="col">Creation Date</th>
+					<th scope="col">Order ID</th>
+					<th scope="col">Total $</th>
+					<th scope="col">Delivery Address</th>
+					<th scope="col">Products</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="orden in lstOrdenes">
+					<td>{{orden.creationDate | date:'yyyy-MM-dd HH:mm:ss'}}</td>
+					<td>{{orden.orderId}}</td>
+					<td>{{orden.total}}</td>
+					<td>{{orden.deliveryAddress}}</td>
+					<td>
+						<ul>
+							<li ng-repeat="orderDetail in orden.orderDetails">{{orderDetail.quantity}}
+								* {{orderDetail.price.product.name}}</li>
+						</ul>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</body>
+</html>
